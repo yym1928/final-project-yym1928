@@ -4,7 +4,7 @@
 
 When there are too many plans in our heads, we often forget things, so it is important to record them somewhere, so you will not completely forget about them. TaskMan can definitly help with reminding what tasks need to be completed.
 
-TaskMan is a task managment / to-do list application. Users can add and delete tasks that needs to be completed in the future with a deadline. Users need to register an account, and when they log into their account, a list of their to-do items will be displayed in the order of the deadline. For each to-do item, user can add a title, a deadline, and soem descriptions. They can also edit the item whenever they want.
+TaskMan is a task managment / to-do list application. Users can add and delete tasks that needs to be completed in the future with a deadline. Users need to register an account, and when they log into their account, a list of their to-do items will be displayed in the order of the deadline. For each to-do item, user can add a title, a deadline, and some descriptions. They can also edit the items whenever they want.
 
 ## Data Model
 
@@ -78,10 +78,9 @@ An Example Item:
 * (3 points) **dotenv**
     * Configuration management using dotenv.
     * It stores default configuration that shouldn't be accessed by other people.
-    * Cofiguration managment modules worth 3 points
+    * Configuration managment modules worth 3 points
 
 9 points total out of 8 required points
-
 
 ## [Link to Initial Main Project File](app.mjs) 
 
@@ -89,5 +88,5 @@ An Example Item:
 
 1. [Reactjs tutorial](https://reactjs.org/tutorial/tutorial.html)
 2. [Sematic UI tutorial](https://semantic-ui.com/introduction/getting-started.html)
-3. [Dotenv doc](https://www.npmjs.com/package/dotenv)
+3. [dotenv doc](https://www.npmjs.com/package/dotenv)
 
