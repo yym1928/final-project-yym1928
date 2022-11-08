@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+
 const { Schema } = mongoose;
 
 const userSchema = Schema({
@@ -17,3 +18,8 @@ const itemSchema = Schema({
 
 const User = mongoose.model('User', userSchema);
 const Item = mongoose.model('Item', itemSchema);
+
+export {
+    User,
+    Item
+};
