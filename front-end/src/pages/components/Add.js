@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Container, Header, Form, Button } from "semantic-ui-react";
+import { Header, Form, Button, Segment } from "semantic-ui-react";
 import SemanticDatepicker from 'react-semantic-ui-datepickers';
 
 function Add(props) {
-    const [currentDate, setNewDate] = useState(null);
+    const [ Date, setDate] = useState(null);
+    const { change, setChange } = props;
     
     function handleSubmit(event) {
         event.preventDefault();
@@ -12,20 +13,20 @@ function Add(props) {
         const requestData = {
             title: event.target.title.value,
             description: event.target.descr.value,
-            deadline: currentDate
+            deadline: Date
         }
 
         axios.post(`${process.env.REACT_APP_BACK_END_DOMAIN}/set`, requestData)
-        .then(res => console.log(res.data))
+        .then(() => setChange(!change))
         .catch(err => console.error(err));
     }
 
     function handleChange(event, data) {
-        setNewDate(data.value);
+        setDate(data.value);
     }
 
     return (
-        <Container>
+        <Segment>
             <Header size='huge' textAlign="center">Add a new task</Header>
 
             <Form onSubmit={handleSubmit}>
@@ -43,7 +44,7 @@ function Add(props) {
                 </Form.Field>
                 <Button type='submit'>Submit</Button>
             </Form>
-        </Container>
+        </Segment>
     );
 }
 

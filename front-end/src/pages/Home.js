@@ -1,16 +1,23 @@
-import React from "react";
+import React, {useState} from "react";
 import Add from "./components/Add";
 import TodoList from "./components/TodoList"
-import { Divider } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import "./Home.css";
 
 function Home(props) {
+    const [change, setChange] = useState(false);
+
     return (
-        <div>
-            <Add />
-            <Divider/>
-            <TodoList />
-        </div>
+        <Grid id="grid" columns={2} divided>
+            <Grid.Row stretched>
+                <Grid.Column>
+                    <Add change={change} setChange={setChange}/>
+                </Grid.Column>
+                <Grid.Column>
+                    <TodoList change={change} setChange={setChange}/>
+                </Grid.Column>
+            </Grid.Row>
+        </Grid>
     );
 };
 

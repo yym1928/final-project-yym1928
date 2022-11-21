@@ -33,7 +33,9 @@ app.get('/get', (req, res) => {
             $project: {
                 title: 1,
                 description: 1,
-                deadline: { $dateToParts: { date: "$deadline" } }
+                deadlineYear: { $year: "$deadline" },
+                deadlineMonth: { $month: "$deadline" },
+                deadlineDay: { $dayOfMonth: "$deadline" }
             }
         }
     ]).exec((err, data) => {
@@ -41,6 +43,26 @@ app.get('/get', (req, res) => {
         res.json(data);
     });
 });
+
+app.get('/edit/:id', (req, res) => {
+    Item.aggregate([
+        {
+            $match: { _id: mongoose.Types.ObjectId(req.params.id) }
+        },
+        {
+            $project: {
+                title: 1,
+                description: 1,
+                deadlineYear: { $year: "$deadline" },
+                deadlineMonth: { $month: "$deadline" },
+                deadlineDay: { $dayOfMonth: "$deadline" }
+            }
+        }
+    ]).exec((err, data) => {
+        if(err) console.error(err);
+        res.json(data);
+    })
+})
 
 app.post('/set', (req, res) => {
 
@@ -56,9 +78,24 @@ app.post('/set', (req, res) => {
     res.send();
 });
 
+app.put('/update/:id', (req, res) => {
+    const newDate = new Date(req.body.deadlineYear, req.body.deadlineMonth-1, req.body.deadlineDay);
+
+    Item.updateOne(
+        { _id: mongoose.Types.ObjectId(req.params.id) },
+        { $set: { 
+            title: req.body.title, 
+            description: req.body.description,
+            deadline: newDate
+        } }
+    ).exec((err, data) => {
+        if(err) console.error(err);
+        res.json(data);
+    });
+});
+
 app.delete('/delete/:id', (req, res) => {
-    Item.deleteOne( { "_id" : req.params.id } )
-    .catch(err => console.error(err));
-})
+    Item.deleteOne( { "_id" : req.params.id } ).then(res.send()).catch(err => console.error(err));
+});
 
 app.listen(process.env.PORT || 5000); 

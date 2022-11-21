@@ -4,19 +4,19 @@ import { Button } from "semantic-ui-react";
 
 
 function Delete(props) {
+    const { change, setChange } = props;
 
     function handleClick(event) {
         event.preventDefault();
 
-        console.log(props.id);
-
         axios.delete(`${process.env.REACT_APP_BACK_END_DOMAIN}/delete/${props.id}`)
-        .then(res => console.log(res.data))
+        .then(() => setChange(!change))
         .catch(err => console.error(err));
     }
 
     return (
         <Button
+            color='red'
             content='Delete'
             onClick={handleClick}>
         </Button>

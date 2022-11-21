@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Header, Container, List } from "semantic-ui-react";
+import { Header, List, Segment } from "semantic-ui-react";
 import Delete from "./Delete";
+import Edit from "./Edit";
 
 
 function TodoList(props) {
+    const { change, setChange } = props;
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -13,24 +15,25 @@ function TodoList(props) {
             setData(res.data);
         })
         .catch((err) => console.error(err));
-    });
+    },[change]);
 
     return (
-        <Container>
+        <Segment>
             <Header size='huge' textAlign="center">Items</Header>
             <List relaxed divided verticalAlign='middle' >
                 {data.map(item => (
                     <List.Item>
                         <List.Content floated='right'>
-                            <Delete id={item._id}/>
+                            <Edit id={item._id }/>
+                            <Delete id={item._id} change={change} setChange={setChange}/>
                         </List.Content>
                         <List.Header size='huge'>{item.title}</List.Header>
                         <List.Description>{item.description}</List.Description>
-                        <List.Description>{item.deadline.month}/{item.deadline.day}/{item.deadline.year}</List.Description>
+                        <List.Description>{item.deadlineMonth}/{item.deadlineDay}/{item.deadlineYear}</List.Description>
                     </List.Item>
                 ))}
             </List>
-        </Container>
+        </Segment>
     );
 }
 
