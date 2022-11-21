@@ -10,7 +10,7 @@ function Edit(props) {
             to={"/edit"}
             state={{ id: props.id }}
         >
-            <Button color="blue">Edit</Button>
+            <Button positive>Edit</Button>
         </Link>
     );
 }

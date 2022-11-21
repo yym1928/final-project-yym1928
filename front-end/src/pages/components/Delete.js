@@ -16,7 +16,7 @@ function Delete(props) {
 
     return (
         <Button
-            color='red'
+            negative
             content='Delete'
             onClick={handleClick}>
         </Button>

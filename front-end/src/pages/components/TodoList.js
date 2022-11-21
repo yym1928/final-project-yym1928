@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Header, List, Segment } from "semantic-ui-react";
+import { Button, Header, List, Segment } from "semantic-ui-react";
 import Delete from "./Delete";
 import Edit from "./Edit";
 
@@ -19,17 +19,20 @@ function TodoList(props) {
 
     return (
         <Segment>
-            <Header size='huge' textAlign="center">Items</Header>
-            <List relaxed divided verticalAlign='middle' >
+            <Header size="huge" textAlign="center">Items</Header>
+            <List relaxed celled verticalAlign="middle">
                 {data.map(item => (
                     <List.Item>
-                        <List.Content floated='right'>
-                            <Edit id={item._id }/>
-                            <Delete id={item._id} change={change} setChange={setChange}/>
+                        <List.Content floated='right' verticalAlign="middle">
+                            <Button.Group size="tiny">
+                                <Edit id={item._id }/>
+                                <Button.Or />
+                                <Delete id={item._id} change={change} setChange={setChange}/>
+                            </Button.Group>
                         </List.Content>
-                        <List.Header size='huge'>{item.title}</List.Header>
-                        <List.Description>{item.description}</List.Description>
-                        <List.Description>{item.deadlineMonth}/{item.deadlineDay}/{item.deadlineYear}</List.Description>
+                        <List.Header as='h2'>{item.title}</List.Header>
+                        <List.Description style={{ margin: '10px', 'max-width': '75%' }}>{item.description}</List.Description>
+                        <List.Description>{item.deadlineYear}-{item.deadlineMonth}-{item.deadlineDay}</List.Description>
                     </List.Item>
                 ))}
             </List>

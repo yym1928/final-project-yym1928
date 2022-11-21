@@ -8,7 +8,7 @@ function Home(props) {
     const [change, setChange] = useState(false);
 
     return (
-        <Grid id="grid" columns={2} divided>
+        <Grid columns={2} divided>
             <Grid.Row stretched>
                 <Grid.Column>
                     <Add change={change} setChange={setChange}/>

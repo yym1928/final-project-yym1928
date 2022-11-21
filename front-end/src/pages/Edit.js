@@ -3,6 +3,7 @@ import axios from "axios";
 import { Navigate, useNavigate, useLocation } from "react-router-dom";
 import { Form, Header, Input, TextArea, Button, Segment } from "semantic-ui-react";
 import SemanticDatepicker from 'react-semantic-ui-datepickers';
+import './Edit.css';
 
 
 function Edit(props) {

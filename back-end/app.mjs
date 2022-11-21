@@ -62,7 +62,7 @@ app.get('/edit/:id', (req, res) => {
     })
 })
 
-app.post('/set', (req, res) => {
+app.post('/add', (req, res) => {
 
     const newItem = new Item({
         title: req.body.title,

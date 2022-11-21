@@ -1,28 +1,25 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Header, Form, Button, Segment } from "semantic-ui-react";
+import { Header, Form, Button, Segment, Input, TextArea } from "semantic-ui-react";
 import SemanticDatepicker from 'react-semantic-ui-datepickers';
 
 function Add(props) {
-    const [ Date, setDate] = useState(null);
+    const [ data, setData] = useState({ title: '', description: '', deadline: '' });
     const { change, setChange } = props;
     
     function handleSubmit(event) {
         event.preventDefault();
 
-        const requestData = {
-            title: event.target.title.value,
-            description: event.target.descr.value,
-            deadline: Date
-        }
-
-        axios.post(`${process.env.REACT_APP_BACK_END_DOMAIN}/set`, requestData)
-        .then(() => setChange(!change))
+        axios.post(`${process.env.REACT_APP_BACK_END_DOMAIN}/add`, data)
+        .then(() => {
+            setData({ title: '', description: '', deadline: '' });
+            setChange(!change);
+        })
         .catch(err => console.error(err));
     }
 
-    function handleChange(event, data) {
-        setDate(data.value);
+    function handleChange(event, { name, value }) {
+        setData({ ...data, [name]: value })
     }
 
     return (
@@ -30,18 +27,30 @@ function Add(props) {
             <Header size='huge' textAlign="center">Add a new task</Header>
 
             <Form onSubmit={handleSubmit}>
-                <Form.Field>
-                    <label>Title</label>
-                    <input type="text" name="title" required/>
-                </Form.Field>
-                <Form.Field>
-                    <label>Description</label>
-                    <input type="text" name="descr" required/>
-                </Form.Field>
-                <Form.Field>
-                    <label>Deadline</label>
-                    <SemanticDatepicker onChange={handleChange} required/>
-                </Form.Field>
+                <Form.Field
+                    control={Input}
+                    label='Title'
+                    name='title'
+                    value={data.title}
+                    onChange={handleChange}
+                    required
+                />
+                <Form.Field
+                    control={TextArea}
+                    label='Description'
+                    name='description'
+                    value={data.description}
+                    onChange={handleChange}
+                    required
+                />
+                <Form.Field
+                    control={SemanticDatepicker} 
+                    label='Deadline' 
+                    name='deadline'
+                    value={data.deadline} 
+                    onChange={handleChange}
+                    required
+                />
                 <Button type='submit'>Submit</Button>
             </Form>
         </Segment>
