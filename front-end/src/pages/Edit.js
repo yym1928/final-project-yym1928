@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Navigate, useNavigate, useLocation } from "react-router-dom";
-import { Form, Header, Input, TextArea, Button, Segment } from "semantic-ui-react";
+import { Form, Header, Input, TextArea, Button, Segment, Grid } from "semantic-ui-react";
 import SemanticDatepicker from 'react-semantic-ui-datepickers';
 import './Edit.css';
 
@@ -40,34 +40,41 @@ function Edit(props) {
     }
 
     return (
-        <Segment>
-            <Header size="huge">Edit</Header>
-            <Form onSubmit={handleSubmit}>
-                <Form.Field
-                    control={Input}
-                    label='Title'
-                    name='title'
-                    value={data.title}
-                    onChange={handleChange}
-                />
-                <Form.Field
-                    control={TextArea}
-                    label='Description'
-                    name='description'
-                    value={data.description}
-                    onChange={handleChange}
-                />
-                <Form.Field>
-                    <SemanticDatepicker
-                        label='Deadline'
-                        name='deadline'
-                        value={data.deadline}
-                        onChange={handleChange}
-                    />
-                </Form.Field>
-                <Button type='submit'>Save</Button>
-            </Form>
-        </Segment>
+        <Grid id='editGrid' textAlign="center" verticalAlign="middle">
+            <Grid.Column id='editCol'>
+                <Segment>
+                    <Header size="huge">Edit</Header>
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Field
+                            control={Input}
+                            label='Title'
+                            name='title'
+                            value={data.title}
+                            onChange={handleChange}
+                            required
+                        />
+                        <Form.Field
+                            control={TextArea}
+                            label='Description'
+                            name='description'
+                            value={data.description}
+                            onChange={handleChange}
+                            required
+                        />
+                        <Form.Field>
+                            <SemanticDatepicker
+                                label='Deadline'
+                                name='deadline'
+                                value={data.deadline}
+                                onChange={handleChange}
+                                required
+                            />
+                        </Form.Field>
+                        <Button id='editButton' color="blue" type='submit'>Save</Button>
+                    </Form>
+                </Segment>
+            </Grid.Column>
+        </Grid>
     );
 };
 

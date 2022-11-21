@@ -51,7 +51,7 @@ function Add(props) {
                     onChange={handleChange}
                     required
                 />
-                <Button type='submit'>Submit</Button>
+                <Button color="blue" style={{ width: '50%'}} type='submit'>Submit</Button>
             </Form>
         </Segment>
     );

@@ -31,7 +31,7 @@ function TodoList(props) {
                             </Button.Group>
                         </List.Content>
                         <List.Header as='h2'>{item.title}</List.Header>
-                        <List.Description style={{ margin: '10px', 'max-width': '75%' }}>{item.description}</List.Description>
+                        <List.Description style={{ margin: '10px', 'maxWidth': '75%' }}>{item.description}</List.Description>
                         <List.Description>{item.deadlineYear}-{item.deadlineMonth}-{item.deadlineDay}</List.Description>
                     </List.Item>
                 ))}

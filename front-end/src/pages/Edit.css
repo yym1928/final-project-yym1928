@@ -1,3 +1,11 @@
-.ui.segment {
-    margin-top: 10vh;
+#editGrid {
+    height: 100vh;
+}
+
+#editCol {
+    max-width: 50%;
+}
+
+#editButton {
+    width: 50%;
 }

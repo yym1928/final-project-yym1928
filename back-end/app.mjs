@@ -29,6 +29,7 @@ app.use(cors());
 
 app.get('/get', (req, res) => {
     Item.aggregate([
+        { $sort : { deadline: 1 } },
         {
             $project: {
                 title: 1,

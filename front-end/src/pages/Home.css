@@ -1,5 +1,5 @@
-.ui.grid {
+#homeGrid {
     height: 100vh;
-    margin-top: 5vh;
+    margin-top: 10px;
     padding: 2%;
 }
