@@ -53,9 +53,7 @@ app.get('/edit/:id', (req, res) => {
             $project: {
                 title: 1,
                 description: 1,
-                deadlineYear: { $year: "$deadline" },
-                deadlineMonth: { $month: "$deadline" },
-                deadlineDay: { $dayOfMonth: "$deadline" }
+                deadline: 1,
             }
         }
     ]).exec((err, data) => {
@@ -79,14 +77,13 @@ app.post('/set', (req, res) => {
 });
 
 app.put('/update/:id', (req, res) => {
-    const newDate = new Date(req.body.deadlineYear, req.body.deadlineMonth-1, req.body.deadlineDay);
 
     Item.updateOne(
         { _id: mongoose.Types.ObjectId(req.params.id) },
         { $set: { 
             title: req.body.title, 
             description: req.body.description,
-            deadline: newDate
+            deadline: req.body.deadline
         } }
     ).exec((err, data) => {
         if(err) console.error(err);

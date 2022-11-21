@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Navigate, useNavigate, useLocation } from "react-router-dom";
 import { Form, Header, Input, TextArea, Button, Segment } from "semantic-ui-react";
+import SemanticDatepicker from 'react-semantic-ui-datepickers';
+
 
 function Edit(props) {
     const [data, setData] = useState([]);
@@ -10,7 +12,8 @@ function Edit(props) {
    
     const fetchData = async (id) => {
         const res = await axios.get(`${process.env.REACT_APP_BACK_END_DOMAIN}/edit/${id}`);
-        setData(res.data[0]);
+        setData({ ...res.data[0], deadline: new Date(res.data[0].deadline) });
+
     }
 
     useEffect(() => {
@@ -23,6 +26,7 @@ function Edit(props) {
 
     function handleChange(event, { name, value }) {
         setData({ ...data, [name]: value });
+        console.log(data);
     }
     
     async function handleSubmit(event) {
@@ -52,29 +56,14 @@ function Edit(props) {
                     value={data.description}
                     onChange={handleChange}
                 />
-                <Form.Group widths='equal'>
-                    <Form.Field
-                        control={Input}
-                        label='Year'
-                        name='deadlineYear'
-                        value={data.deadlineYear}
+                <Form.Field>
+                    <SemanticDatepicker
+                        label='Deadline'
+                        name='deadline'
+                        value={data.deadline}
                         onChange={handleChange}
                     />
-                    <Form.Field
-                        control={Input}
-                        label='Month'
-                        name='deadlineMonth'
-                        value={data.deadlineMonth}
-                        onChange={handleChange}
-                    />
-                    <Form.Field
-                        control={Input}
-                        label='Day'
-                        name='deadlineDay'
-                        value={data.deadlineDay}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
+                </Form.Field>
                 <Button type='submit'>Save</Button>
             </Form>
         </Segment>
