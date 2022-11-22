@@ -30,13 +30,11 @@ function Edit(props) {
         console.log(data);
     }
     
-    async function handleSubmit(event) {
+    function handleSubmit(event) {
         event.preventDefault();
 
-        const res = await axios.put(`${process.env.REACT_APP_BACK_END_DOMAIN}/update/${state.id}`, data);
-
-        console.log(res.data);
-        navigate('/');
+        axios.put(`${process.env.REACT_APP_BACK_END_DOMAIN}/update/${state.id}`, data)
+        .then(() => navigate('/'));
     }
 
     return (

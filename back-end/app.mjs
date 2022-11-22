@@ -4,10 +4,24 @@ import { fileURLToPath } from 'url';
 import bodyParser from 'body-parser';
 import { User, Item } from "./db.mjs";
 import mongoose from 'mongoose';
+// import passport from 'passport';
+// import { Strategy as LocalStrategy } from 'passport-local';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
 dotenv.config();
+
+const app = express();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cors());
+
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 if(process.env.NODE_ENV === 'PRODUCTION') {
     mongoose.connect(`mongodb://${process.env.DB_USER_NAME}:${process.env.DB_PASSWORD}@class-mongodb.cims.nyu.edu/${process.env.DB_USER_NAME}`);
@@ -15,17 +29,10 @@ if(process.env.NODE_ENV === 'PRODUCTION') {
     mongoose.connect('mongodb://localhost/finalproject');
 }
 
-const app = express();
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// passport.use(new LocalStrategy(User.authenticate()));
 
-app.use(express.urlencoded({ extended: false }));
-
-app.use(bodyParser.urlencoded({ extended: false }));
-
-app.use(bodyParser.json());
-
-app.use(cors());
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
 
 app.get('/get', (req, res) => {
     Item.aggregate([

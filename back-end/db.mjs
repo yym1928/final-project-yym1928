@@ -14,10 +14,10 @@ const itemSchema = Schema({
     user: { type: Schema.Types.ObjectId, ref: 'User' }
 }, { timestamps: true });
 
+userSchema.plugin(passportLocalMongoose);
+
 const User = mongoose.model('User', userSchema);
 const Item = mongoose.model('Item', itemSchema);
-
-User.plugin(passportLocalMongoose);
 
 export {
     User,
