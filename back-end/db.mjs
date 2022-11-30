@@ -4,6 +4,7 @@ import passportLocalMongoose from 'passport-local-mongoose';
 const { Schema } = mongoose;
 
 const userSchema = Schema({
+    username: String,
     items: [{ type: Schema.Types.ObjectId, ref: 'Item' }]
 });
 

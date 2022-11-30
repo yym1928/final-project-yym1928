@@ -10,7 +10,7 @@ function Add(props) {
     function handleSubmit(event) {
         event.preventDefault();
 
-        axios.post(`${process.env.REACT_APP_BACK_END_DOMAIN}/add`, data)
+        axios.post(`${process.env.REACT_APP_BACK_END_DOMAIN}/add`, data, { withCredentials: true })
         .then(() => {
             setData({ title: '', description: '', deadline: '' });
             setChange(!change);

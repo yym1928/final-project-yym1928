@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter , Routes, Route } from "react-router-dom";
 
 import "./App.css";
@@ -9,16 +9,18 @@ import Register from "./pages/Register";
 import StickyNavbar from "./pages/components/StickyNavbar";
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(sessionStorage.getItem('user'));
+
   return (
     <>
       <BrowserRouter>
-        <StickyNavbar />
+        <StickyNavbar loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
         
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Home loggedIn={loggedIn}/>} />
+          <Route path="/login" element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
           <Route path="/register" element={<Register />} />
-          <Route path="/edit" element={<Edit />} />
+          <Route path="/edit" element={<Edit loggedIn={loggedIn}/>} />
         </Routes>
       </BrowserRouter>
     </>

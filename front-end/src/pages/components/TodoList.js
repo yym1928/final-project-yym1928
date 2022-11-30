@@ -10,7 +10,7 @@ function TodoList(props) {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_BACK_END_DOMAIN}/get`)
+        axios.get(`${process.env.REACT_APP_BACK_END_DOMAIN}/get`, { withCredentials: true })
         .then((res) => {
             setData(res.data);
         })
@@ -32,7 +32,7 @@ function TodoList(props) {
                         </List.Content>
                         <List.Header as='h2'>{item.title}</List.Header>
                         <List.Description style={{ margin: '10px', 'maxWidth': '75%' }}>{item.description}</List.Description>
-                        <List.Description>{item.deadlineYear}-{item.deadlineMonth}-{item.deadlineDay}</List.Description>
+                        <List.Description>{item.deadline.toString().substring(0,10)}</List.Description>
                     </List.Item>
                 ))}
             </List>
