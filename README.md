@@ -73,10 +73,11 @@ An Example Item:
 
 ## Research Topics
 
-* (6 points) **React**
+* (4 points) **React**
     * I'm going to use React as the frontend framework. 
     * React is declarative, which makes code easier to read and debug.
     * Since it will be learned in class, and I have a little bit of experience with it, it should worth 4 points.
+    
 * (2 points) **Semantic UI**
     * I am goint to use this CSS framework for the UI.
     * It can help with building a web app with neat web pages.
@@ -86,8 +87,13 @@ An Example Item:
     * Configuration management using dotenv.
     * It stores default configuration that shouldn't be accessed by other people.
     * Configuration managment modules worth 3 points
+    
+* (3 points) **Passport-Local Mongoose**
+    * User authentication using passport local strategy.
+    * A plugin that adds hash and salt into user schema, and uses passport local strategy to verify and create user session.
+    * A passport authentication uses predefined strategy and serialization. It should worth 3 points.
 
-11 points total out of 10 required points
+12 points total out of 10 required points
 
 ## [Link to Initial Main Project File](app.mjs) 
 
@@ -97,4 +103,6 @@ An Example Item:
 2. [Sematic UI tutorial](https://semantic-ui.com/introduction/getting-started.html)
 3. [dotenv doc](https://www.npmjs.com/package/dotenv)
 4. [Passport.js](https://www.passportjs.org/)
+5. [Passport-Local Mongoose Example](https://github.com/saintedlama/passport-local-mongoose/tree/main/examples/login)
+
 
