@@ -6,7 +6,7 @@ import Edit from "./Edit";
 
 
 function TodoList(props) {
-    const { change, setChange } = props;
+    const { change, setChange, setLoggedIn } = props;
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -14,7 +14,13 @@ function TodoList(props) {
         .then((res) => {
             setData(res.data);
         })
-        .catch((err) => console.error(err));
+        .catch((err) => {
+            console.log(err);
+
+            if(err.response.status === 401) {
+                setLoggedIn(false);
+            }
+        });
     },[change]);
 
     return (

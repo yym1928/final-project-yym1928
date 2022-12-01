@@ -6,7 +6,7 @@ import "./Home.css";
 import { Navigate } from "react-router-dom";
 
 function Home(props) {
-    const { loggedIn } = props;
+    const { loggedIn, setLoggedIn } = props;
     const [change, setChange] = useState(false);
 
     return (
@@ -15,10 +15,10 @@ function Home(props) {
                 <Grid id="homeGrid" columns={2} divided>
                     <Grid.Row stretched>
                         <Grid.Column textAlign="center">
-                            <Add change={change} setChange={setChange}/>
+                            <Add change={change} setChange={setChange} setLoggedIn={setLoggedIn}/>
                         </Grid.Column>
                         <Grid.Column>
-                            <TodoList change={change} setChange={setChange}/>
+                            <TodoList change={change} setChange={setChange} setLoggedIn={setLoggedIn}/>
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>

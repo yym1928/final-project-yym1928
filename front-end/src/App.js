@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BrowserRouter , Routes, Route } from "react-router-dom";
 
 import "./App.css";
@@ -17,10 +17,10 @@ function App() {
         <StickyNavbar loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
         
         <Routes>
-          <Route path="/" element={<Home loggedIn={loggedIn}/>} />
-          <Route path="/login" element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
+          <Route path="/" element={<Home loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
+          <Route path="/login" element={<Login setLoggedIn={setLoggedIn}/>} />
           <Route path="/register" element={<Register />} />
-          <Route path="/edit" element={<Edit loggedIn={loggedIn}/>} />
+          <Route path="/edit" element={<Edit loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
         </Routes>
       </BrowserRouter>
     </>

@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
-import { User, Item } from "./db.mjs";
+import { User } from "./db.mjs";
 import router from './routes.mjs';
 import mongoose from 'mongoose';
 import passport from 'passport';

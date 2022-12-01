@@ -5,7 +5,7 @@ import { Grid, Header, Form, Segment, Button, Message } from "semantic-ui-react"
 import './Login.css';
 
 function Login(props) {
-    const { loggedIn, setLoggedIn } = props;
+    const { setLoggedIn } = props;
     const[error, setError] = useState(false);
     const navigate = useNavigate();
 
@@ -18,7 +18,6 @@ function Login(props) {
                 password: event.target.password.value,
             }, { withCredentials: true });
 
-            console.log(response.data);
             sessionStorage.setItem('user', response.data);
             setLoggedIn(true);
             navigate('/');

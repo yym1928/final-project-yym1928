@@ -4,6 +4,7 @@ import { Header, Form, Button, Segment, Input, TextArea } from "semantic-ui-reac
 import SemanticDatepicker from 'react-semantic-ui-datepickers';
 
 function Add(props) {
+    const { setLoggedIn } = props;
     const [ data, setData] = useState({ title: '', description: '', deadline: '' });
     const { change, setChange } = props;
     
@@ -15,7 +16,13 @@ function Add(props) {
             setData({ title: '', description: '', deadline: '' });
             setChange(!change);
         })
-        .catch(err => console.error(err));
+        .catch(err => {
+            console.log(err);
+
+            if(err.response.status === 401) {
+                setLoggedIn(false);
+            }
+        });
     }
 
     function handleChange(event, { name, value }) {

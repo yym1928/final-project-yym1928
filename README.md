@@ -17,9 +17,10 @@ An Example User:
 ```javascript
 {
   _id: // an unique object id for the user
-  username: "Jack",
-  password: // a password hash
+  username: // username of the account
   items: // an array of references to Item documents
+  salt: // salt for hashing the password
+  hash: // a password hash
 }
 ```
 
@@ -27,11 +28,13 @@ An Example Item:
 
 ```javascript
 {
-  user: // a reference to a User object
-  title: "Complete Milestone 1",
-  description: // a string of a short description of the item.
-  deadline: // a date object
-  createdAt: // timestamp
+  _id: // unique object id for the item
+  title: // title of the task
+  description: // description of the task
+  deadline: // deadline of the task
+  user: // reference to the object id of the user
+  createdAt: // timestamp for when the item is created
+  updatedAt: // timestamp for when the item is updated
 }
 ```
 
@@ -43,6 +46,10 @@ An Example Item:
 
 ![Home Page](documentation/home.jpeg)
 
+/edit - page for editing specific items
+
+![Home Page](documentation/Edit.jpeg)
+
 /login - page for user to log in
 
 ![Log In Page](documentation/Login.jpeg)
@@ -53,7 +60,7 @@ An Example Item:
 
 ## Site map
 
-![site Map](documentation/siteMap.jpg)
+![site Map](documentation/siteMap.jpeg)
 
 ## User Stories or Use Cases
 
@@ -66,7 +73,7 @@ An Example Item:
 
 ## Research Topics
 
-* (4 points) **React**
+* (6 points) **React**
     * I'm going to use React as the frontend framework. 
     * React is declarative, which makes code easier to read and debug.
     * Since it will be learned in class, and I have a little bit of experience with it, it should worth 4 points.
@@ -80,7 +87,7 @@ An Example Item:
     * It stores default configuration that shouldn't be accessed by other people.
     * Configuration managment modules worth 3 points
 
-9 points total out of 8 required points
+11 points total out of 10 required points
 
 ## [Link to Initial Main Project File](app.mjs) 
 
@@ -89,4 +96,5 @@ An Example Item:
 1. [Reactjs tutorial](https://reactjs.org/tutorial/tutorial.html)
 2. [Sematic UI tutorial](https://semantic-ui.com/introduction/getting-started.html)
 3. [dotenv doc](https://www.npmjs.com/package/dotenv)
+4. [Passport.js](https://www.passportjs.org/)
 

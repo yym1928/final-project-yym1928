@@ -38,18 +38,7 @@ router.get('/get', (req, res) => {
 
 router.get('/edit/:id', (req, res) => {
     if(req.user){
-        Item.aggregate([
-            {
-                $match: { _id: mongoose.Types.ObjectId(req.params.id) }
-            },
-            {
-                $project: {
-                    title: 1,
-                    description: 1,
-                    deadline: 1,
-                }
-            }
-        ]).exec((err, data) => {
+        Item.findById(mongoose.Types.ObjectId(req.params.id)).exec((err, data) => {
             if(err) console.log(err);
             res.json(data);
         })
